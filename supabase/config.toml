@@ -223,6 +223,13 @@ enable_signup = true
 # addresses. If disabled, only the new email is required to confirm.
 double_confirm_changes = true
 # If enabled, users need to confirm their email address before signing in.
+# ローカルはfalse（即時サインアップでイテレーションを速くする）。ホストされたSupabaseプロジェクトは
+# デフォルトでtrue相当（メール確認必須）になっており、実際に本番でこの差異により
+# signUp直後のaccept_invite呼び出しが失敗することが判明した。src/app/signup/actions.tsの
+# signup()はセッション有無で分岐して対応済み。ホスト側の確認メールテンプレートは、下記
+# [auth.email.template.confirmation] と同内容（src/app/auth/confirm/route.tsへのリンク）に
+# ダッシュボードから合わせること（config.toml全体を supabase config push で流用しない。
+# site_url等ローカル固有の値を本番に誤って適用してしまうため）。
 enable_confirmations = false
 # If enabled, users will need to reauthenticate or have logged in recently to change their password.
 secure_password_change = false
@@ -247,6 +254,15 @@ otp_expiry = 3600
 # [auth.email.template.invite]
 # subject = "You have been invited"
 # content_path = "./supabase/templates/invite.html"
+
+# サインアップ確認メール。デフォルトのSupabase /auth/v1/verify リンクだと、Next.jsのServer Componentから
+# セッションを読めないフラグメント方式のリダイレクトになる。src/app/auth/confirm/route.tsへのリンクに
+# 差し替え、token_hashをサーバー側でverifyOtpし、Cookieベースのセッションとして正しく確立させる。
+# 本番（ホストされたSupabaseプロジェクト）でも同内容をダッシュボードのAuthentication > Email Templates >
+# Confirm signup に手動で設定すること（config.toml全体のpushはsite_url等が事故るため行わない）。
+[auth.email.template.confirmation]
+subject = "業務改善ボード — メールアドレスの確認"
+content_path = "./supabase/templates/confirmation.html"
 
 # Uncomment to customize notification email template
 # [auth.email.notification.password_changed]

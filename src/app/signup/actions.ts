@@ -4,7 +4,7 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 
-export type SignupState = { error?: string } | undefined;
+export type SignupState = { error?: string; info?: string } | undefined;
 
 type SupabaseServerClient = Awaited<ReturnType<typeof createClient>>;
 
@@ -30,6 +30,15 @@ export async function signup(_prevState: SignupState, formData: FormData): Promi
 
   if (signUpError || !data.user) {
     return { error: signUpError?.message ?? "サインアップに失敗しました。" };
+  }
+
+  // メール確認が必須のプロジェクトではsignUp直後にセッションが発行されない。
+  // その場合accept_invite()は未認証（anonロール）で実行され失敗するため、先に確認メール待ちの案内を出す。
+  // 招待コード・氏名はここでは保持しない: メール確認後 /signup に戻ると RetryInviteForm で再入力してもらう。
+  if (!data.session) {
+    return {
+      info: "確認メールを送信しました。メール内のリンクをクリックした後、このページに戻って招待コードと氏名を再入力してください。",
+    };
   }
 
   const { error: inviteError } = await supabase.rpc("accept_invite", {

@@ -7,6 +7,10 @@ import { signup } from "./actions";
 export function SignupForm() {
   const [state, formAction, pending] = useActionState(signup, undefined);
 
+  if (state?.info) {
+    return <p className="text-sm text-zinc-700">{state.info}</p>;
+  }
+
   return (
     <form action={formAction} className="space-y-4">
       <div>
