@@ -17,11 +17,11 @@ insert into auth.users (
   'authenticated',
   'authenticated',
   'supporter@example.com',
-  crypt('supporter-password', gen_salt('bf')),
+  extensions.crypt('supporter-password', extensions.gen_salt('bf')),
   now(),
   now(),
   now(),
-  '{"provider":"email","providers":["email"]}',
+  '{"provider":"hiroki@080602@gmail.com","providers":["hiroki@080602@gmail.com"]}',
   '{}',
   '', '', '', '', ''
 );
