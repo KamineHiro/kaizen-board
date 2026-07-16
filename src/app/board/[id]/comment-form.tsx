@@ -52,13 +52,13 @@ export function CommentForm({ issueId }: { issueId: string }) {
         onChange={(e) => setBody(e.target.value)}
         rows={3}
         placeholder="返信を書く"
-        className="w-full rounded border px-3 py-2"
+        className="w-full rounded border px-3 py-2 dark:border-zinc-700 dark:bg-zinc-900"
       />
-      {error && <p className="text-sm text-red-600">{error}</p>}
+      {error && <p className="text-sm text-red-600 dark:text-red-400">{error}</p>}
       <button
         type="submit"
         disabled={pending}
-        className="rounded bg-black px-4 py-2 text-sm text-white disabled:opacity-50"
+        className="rounded bg-black px-4 py-2 text-sm text-white disabled:opacity-50 dark:bg-zinc-100 dark:text-zinc-900"
       >
         {pending ? "送信中…" : "返信する"}
       </button>

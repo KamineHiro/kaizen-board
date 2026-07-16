@@ -23,7 +23,7 @@ export default function LoginPage() {
               type="email"
               required
               autoComplete="email"
-              className="mt-1 w-full rounded border px-3 py-2"
+              className="mt-1 w-full rounded border px-3 py-2 dark:border-zinc-700 dark:bg-zinc-900"
             />
           </div>
           <div>
@@ -36,19 +36,19 @@ export default function LoginPage() {
               type="password"
               required
               autoComplete="current-password"
-              className="mt-1 w-full rounded border px-3 py-2"
+              className="mt-1 w-full rounded border px-3 py-2 dark:border-zinc-700 dark:bg-zinc-900"
             />
           </div>
-          {state?.error && <p className="text-sm text-red-600">{state.error}</p>}
+          {state?.error && <p className="text-sm text-red-600 dark:text-red-400">{state.error}</p>}
           <button
             type="submit"
             disabled={pending}
-            className="w-full rounded bg-black px-4 py-2 text-white disabled:opacity-50"
+            className="w-full rounded bg-black px-4 py-2 text-white disabled:opacity-50 dark:bg-zinc-100 dark:text-zinc-900"
           >
             {pending ? "ログイン中…" : "ログイン"}
           </button>
         </form>
-        <p className="text-sm text-zinc-600">
+        <p className="text-sm text-zinc-600 dark:text-zinc-400">
           アカウントをお持ちでない方は{" "}
           <Link href="/signup" className="underline">
             サインアップ

@@ -53,7 +53,7 @@ export function CaptureForm() {
           required
           rows={5}
           placeholder="例: 受注データを基幹システムからExcelに毎朝手で転記してる。これ何とかならん？"
-          className="mt-1 w-full rounded border px-3 py-2"
+          className="mt-1 w-full rounded border px-3 py-2 dark:border-zinc-700 dark:bg-zinc-900"
         />
       </div>
       <div>
@@ -65,7 +65,7 @@ export function CaptureForm() {
           name="frequency"
           type="text"
           placeholder="例: 毎日、週3回"
-          className="mt-1 w-full rounded border px-3 py-2"
+          className="mt-1 w-full rounded border px-3 py-2 dark:border-zinc-700 dark:bg-zinc-900"
         />
       </div>
       <div>
@@ -77,14 +77,14 @@ export function CaptureForm() {
           name="time_per_occurrence"
           type="number"
           min={0}
-          className="mt-1 w-full rounded border px-3 py-2"
+          className="mt-1 w-full rounded border px-3 py-2 dark:border-zinc-700 dark:bg-zinc-900"
         />
       </div>
-      {error && <p className="text-sm text-red-600">{error}</p>}
+      {error && <p className="text-sm text-red-600 dark:text-red-400">{error}</p>}
       <button
         type="submit"
         disabled={pending}
-        className="rounded bg-black px-4 py-2 text-white disabled:opacity-50"
+        className="rounded bg-black px-4 py-2 text-white disabled:opacity-50 dark:bg-zinc-100 dark:text-zinc-900"
       >
         {pending ? "送信中…" : "送信する"}
       </button>

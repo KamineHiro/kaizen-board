@@ -22,7 +22,7 @@ export default async function SignupPage() {
       <div className="flex flex-1 items-center justify-center px-4 py-16">
         <div className="w-full max-w-sm space-y-6">
           <h1 className="text-xl font-semibold">招待コードを確認</h1>
-          <p className="text-sm text-zinc-600">
+          <p className="text-sm text-zinc-600 dark:text-zinc-400">
             アカウントは作成済みです。招待コードの確認のみ完了していません。
           </p>
           <RetryInviteForm />

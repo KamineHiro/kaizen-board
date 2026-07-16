@@ -48,14 +48,14 @@ export default async function RootLayout({
       lang="ja"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-zinc-50 text-zinc-900">
-        <header className="flex items-center justify-between border-b bg-white px-4 py-3">
+      <body className="min-h-full flex flex-col bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100">
+        <header className="flex items-center justify-between border-b bg-white px-4 py-3 dark:border-zinc-800 dark:bg-zinc-900">
           <a href={profile?.role === "supporter" ? "/supporter" : "/board"} className="font-semibold">
             業務改善ボード
           </a>
           {profile && (
             <div className="flex items-center gap-3 text-sm">
-              <span className="text-zinc-600">
+              <span className="text-zinc-600 dark:text-zinc-400">
                 {profile.name}（{roleLabel(profile.role)}）
               </span>
               <LogoutButton />

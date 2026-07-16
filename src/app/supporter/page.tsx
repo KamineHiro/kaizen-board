@@ -47,7 +47,9 @@ export default async function SupporterPage({
       <div className="flex flex-wrap gap-2 text-sm">
         <Link
           href="/supporter"
-          className={`rounded border px-3 py-1 ${!company ? "bg-black text-white" : "bg-white"}`}
+          className={`rounded border px-3 py-1 dark:border-zinc-700 ${
+            !company ? "bg-black text-white dark:bg-zinc-100 dark:text-zinc-900" : "bg-white dark:bg-zinc-900"
+          }`}
         >
           すべて
         </Link>
@@ -55,14 +57,18 @@ export default async function SupporterPage({
           <Link
             key={c.id}
             href={`/supporter?company=${c.id}`}
-            className={`rounded border px-3 py-1 ${company === c.id ? "bg-black text-white" : "bg-white"}`}
+            className={`rounded border px-3 py-1 dark:border-zinc-700 ${
+              company === c.id
+                ? "bg-black text-white dark:bg-zinc-100 dark:text-zinc-900"
+                : "bg-white dark:bg-zinc-900"
+            }`}
           >
             {c.name}
           </Link>
         ))}
       </div>
 
-      {sorted.length === 0 && <p className="text-zinc-500">課題がありません。</p>}
+      {sorted.length === 0 && <p className="text-zinc-500 dark:text-zinc-400">課題がありません。</p>}
 
       <ul className="space-y-3">
         {sorted.map((issue) => {
@@ -71,12 +77,12 @@ export default async function SupporterPage({
             <li key={issue.id}>
               <Link
                 href={`/board/${issue.id}`}
-                className="block rounded border bg-white px-4 py-3 hover:bg-zinc-50"
+                className="block rounded border bg-white px-4 py-3 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:hover:bg-zinc-800"
               >
                 <div className="flex flex-wrap items-center gap-2 text-xs">
                   <DifficultyBadge level={issue.ai_difficulty} />
-                  {companyName && <span className="text-zinc-500">{companyName}</span>}
-                  {issue.frequency && <span className="text-zinc-500">{issue.frequency}</span>}
+                  {companyName && <span className="text-zinc-500 dark:text-zinc-400">{companyName}</span>}
+                  {issue.frequency && <span className="text-zinc-500 dark:text-zinc-400">{issue.frequency}</span>}
                 </div>
                 <p className="mt-1 line-clamp-2 text-sm">{issue.raw_input}</p>
               </Link>

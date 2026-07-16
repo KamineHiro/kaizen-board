@@ -30,25 +30,34 @@ export default async function BoardPage() {
     <div className="mx-auto flex w-full max-w-3xl flex-1 flex-col gap-6 px-4 py-8">
       <div className="flex items-center justify-between">
         <h1 className="text-xl font-semibold">自社ボード</h1>
-        <Link href="/capture" className="rounded bg-black px-4 py-2 text-sm text-white">
+        <Link
+          href="/capture"
+          className="rounded bg-black px-4 py-2 text-sm text-white dark:bg-zinc-100 dark:text-zinc-900"
+        >
           ＋困りごとを投稿
         </Link>
       </div>
 
-      {sorted.length === 0 && <p className="text-zinc-500">まだ困りごとが投稿されていません。</p>}
+      {sorted.length === 0 && (
+        <p className="text-zinc-500 dark:text-zinc-400">まだ困りごとが投稿されていません。</p>
+      )}
 
       <ul className="space-y-3">
         {sorted.map((issue) => (
           <li key={issue.id}>
             <Link
               href={`/board/${issue.id}`}
-              className="block rounded border bg-white px-4 py-3 hover:bg-zinc-50"
+              className="block rounded border bg-white px-4 py-3 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:hover:bg-zinc-800"
             >
               <div className="flex items-center gap-2 text-xs">
                 <DifficultyBadge level={issue.ai_difficulty} />
-                {issue.frequency && <span className="text-zinc-500">{issue.frequency}</span>}
+                {issue.frequency && (
+                  <span className="text-zinc-500 dark:text-zinc-400">{issue.frequency}</span>
+                )}
                 {issue.time_per_occurrence != null && (
-                  <span className="text-zinc-500">{issue.time_per_occurrence}分/回</span>
+                  <span className="text-zinc-500 dark:text-zinc-400">
+                    {issue.time_per_occurrence}分/回
+                  </span>
                 )}
               </div>
               <p className="mt-1 line-clamp-2 text-sm">{issue.raw_input}</p>
